@@ -15,6 +15,8 @@
 		470206C71F0E32960075C26D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 470206C51F0E32960075C26D /* LaunchScreen.storyboard */; };
 		470206D21F0E32960075C26D /* ExchangeRatesCalculatorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 470206D11F0E32960075C26D /* ExchangeRatesCalculatorTests.m */; };
 		470206DD1F0E32960075C26D /* ExchangeRatesCalculatorUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 470206DC1F0E32960075C26D /* ExchangeRatesCalculatorUITests.m */; };
+		4714F7F21F1500AB00EC84F8 /* ERCRateItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4714F7F11F1500AB00EC84F8 /* ERCRateItem.m */; };
+		472157491F1AB29D00403789 /* ERCDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 472157481F1AB29D00403789 /* ERCDataManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,10 @@
 		470206D81F0E32960075C26D /* ExchangeRatesCalculatorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExchangeRatesCalculatorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		470206DC1F0E32960075C26D /* ExchangeRatesCalculatorUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExchangeRatesCalculatorUITests.m; sourceTree = "<group>"; };
 		470206DE1F0E32960075C26D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4714F7F01F1500AB00EC84F8 /* ERCRateItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ERCRateItem.h; sourceTree = "<group>"; };
+		4714F7F11F1500AB00EC84F8 /* ERCRateItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ERCRateItem.m; sourceTree = "<group>"; };
+		472157471F1AB29D00403789 /* ERCDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ERCDataManager.h; path = ../ERCDataManager.h; sourceTree = "<group>"; };
+		472157481F1AB29D00403789 /* ERCDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ERCDataManager.m; path = ../ERCDataManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +112,10 @@
 				470206BD1F0E32960075C26D /* ViewController.h */,
 				470206BE1F0E32960075C26D /* ViewController.m */,
 				470206C01F0E32960075C26D /* Main.storyboard */,
+				472157471F1AB29D00403789 /* ERCDataManager.h */,
+				472157481F1AB29D00403789 /* ERCDataManager.m */,
+				4714F7F01F1500AB00EC84F8 /* ERCRateItem.h */,
+				4714F7F11F1500AB00EC84F8 /* ERCRateItem.m */,
 				470206C31F0E32960075C26D /* Assets.xcassets */,
 				470206C51F0E32960075C26D /* LaunchScreen.storyboard */,
 				470206C81F0E32960075C26D /* Info.plist */,
@@ -274,8 +284,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				470206BF1F0E32960075C26D /* ViewController.m in Sources */,
+				4714F7F21F1500AB00EC84F8 /* ERCRateItem.m in Sources */,
 				470206BC1F0E32960075C26D /* AppDelegate.m in Sources */,
 				470206B91F0E32960075C26D /* main.m in Sources */,
+				472157491F1AB29D00403789 /* ERCDataManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -509,6 +521,7 @@
 				470206E31F0E32960075C26D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		470206E41F0E32960075C26D /* Build configuration list for PBXNativeTarget "ExchangeRatesCalculatorTests" */ = {
 			isa = XCConfigurationList;
@@ -517,6 +530,7 @@
 				470206E61F0E32960075C26D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		470206E71F0E32960075C26D /* Build configuration list for PBXNativeTarget "ExchangeRatesCalculatorUITests" */ = {
 			isa = XCConfigurationList;
@@ -525,6 +539,7 @@
 				470206E91F0E32960075C26D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
