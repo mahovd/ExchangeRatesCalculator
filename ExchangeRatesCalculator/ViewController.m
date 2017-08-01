@@ -17,11 +17,16 @@
 @property (nonatomic,weak) IBOutlet UITextField *eurAmountInput;
 
 
+
 @end
 
 @implementation ViewController
 
 NSMutableArray *currentRates = nil;
+
+UIColor *initialBackgroundColorOfInput = nil;
+UIColor *disabledBackgroundColorOfInput = nil;
+
 
 
 - (instancetype) initWithCoder:(NSCoder *)aDecoder
@@ -49,30 +54,82 @@ NSMutableArray *currentRates = nil;
     NSLog(@"viewDidLoad");
     
     
+    initialBackgroundColorOfInput = self.rubAmountInput.backgroundColor;
+    disabledBackgroundColorOfInput = [UIColor lightGrayColor];
+    
+    
     self.rubAmountInput.placeholder = @"enter amount";
     self.usdAmountInput.placeholder = @"enter amount";
     self.eurAmountInput.placeholder = @"enter amount";
     
 }
 
-
-- (IBAction) rubValueChanged:(id)sender
+- (IBAction)rubAmountInputEditStarted:(id)sender
 {
     
-    [self recalculateValues:@"RUB"];
-}
-
-- (IBAction) usdValueChanged:(id)sender
-{
-
-    [self recalculateValues:@"USD"];
+    self.usdAmountInput.enabled = false;
+    self.eurAmountInput.enabled = false;
+    
+    self.usdAmountInput.backgroundColor = disabledBackgroundColorOfInput;
+    self.eurAmountInput.backgroundColor = disabledBackgroundColorOfInput;
     
 }
 
-- (IBAction) eurValueChanged:(id)sender
+- (IBAction)usdAmountInputEditStarted:(id)sender
 {
-    [self recalculateValues:@"EUR"];
+    self.rubAmountInput.enabled = false;
+    self.eurAmountInput.enabled = false;
+    
+    self.rubAmountInput.backgroundColor = disabledBackgroundColorOfInput;
+    self.eurAmountInput.backgroundColor = disabledBackgroundColorOfInput;
 }
+
+- (IBAction)eurAmountInputEditStarted:(id)sender
+{
+    self.rubAmountInput.enabled = false;
+    self.usdAmountInput.enabled = false;
+    
+    self.rubAmountInput.backgroundColor = disabledBackgroundColorOfInput;
+    self.usdAmountInput.backgroundColor = disabledBackgroundColorOfInput;
+}
+
+- (IBAction)clearAllInputs:(id)sender
+{
+    self.rubAmountInput.text = @"";
+    self.rubAmountInput.enabled = true;
+    self.rubAmountInput.backgroundColor = initialBackgroundColorOfInput;
+    
+    self.usdAmountInput.text = @"";
+    self.usdAmountInput.enabled = true;
+    self.usdAmountInput.backgroundColor = initialBackgroundColorOfInput;
+    
+    self.eurAmountInput.text = @"";
+    self.eurAmountInput.enabled = true;
+    self.eurAmountInput.backgroundColor = initialBackgroundColorOfInput;
+    
+    
+    //Remove focus from any input
+    [self.rubAmountInput resignFirstResponder];
+    [self.usdAmountInput resignFirstResponder];
+    [self.eurAmountInput resignFirstResponder];
+    
+    
+}
+
+- (IBAction)calculateButtonPressed:(id)sender
+{
+    NSLog(@"Calculate button was pressed");
+    if (self.rubAmountInput.isEnabled) {
+        [self recalculateValues:@"RUB"];
+    }
+    else if (self.usdAmountInput.isEnabled) {
+        [self recalculateValues:@"USD"];
+    }
+    else if (self.eurAmountInput.isEnabled){
+        [self recalculateValues:@"EUR"];
+    }
+}
+
 
 //Основной метод по расчету новых значений, надо бы вынести из этого класса, но время поджимает
 - (void)recalculateValues:(NSString*)currency{
@@ -99,11 +156,11 @@ NSMutableArray *currentRates = nil;
         double rubVal = [self.rubAmountInput.text doubleValue];
         
         double usdVal = rubVal*currentRUBtoUSDRate;
-        self.usdAmountInput.text = [NSString stringWithFormat:@"%f",usdVal];
+        self.usdAmountInput.text = [NSString stringWithFormat:@"%1.2f",usdVal];
         
         double eurVal = rubVal*currentRUBtoEURRate;
         
-        self.eurAmountInput.text = [NSString stringWithFormat:@"%f",eurVal];
+        self.eurAmountInput.text = [NSString stringWithFormat:@"%1.2f",eurVal];
         
         
     } else if ([currency isEqualToString:@"USD"]) {
@@ -111,10 +168,10 @@ NSMutableArray *currentRates = nil;
         double usdVal = [self.usdAmountInput.text doubleValue];
         
         double rubVal = usdVal*currentUSDtoRUBRate;
-        self.rubAmountInput.text = [NSString stringWithFormat:@"%f",rubVal];
+        self.rubAmountInput.text = [NSString stringWithFormat:@"%1.2f",rubVal];
         
         double eurVal = usdVal*currentUSDtoEURRate;
-        self.eurAmountInput.text = [NSString stringWithFormat:@"%f",eurVal];
+        self.eurAmountInput.text = [NSString stringWithFormat:@"%1.2f",eurVal];
         
     } else if ([currency isEqualToString:@"EUR"])
     {
@@ -122,12 +179,13 @@ NSMutableArray *currentRates = nil;
         double eurVal = [self.eurAmountInput.text doubleValue];
         
         double rubVal = eurVal*currentEURtoRUBRate;
-        self.rubAmountInput.text = [NSString stringWithFormat:@"%f",rubVal];
+        self.rubAmountInput.text = [NSString stringWithFormat:@"%1.2f",rubVal];
         
         double usdVal = eurVal*currentEURtoUSDRate;
-        self.usdAmountInput.text = [NSString stringWithFormat:@"%f",usdVal];
+        self.usdAmountInput.text = [NSString stringWithFormat:@"%1.2f",usdVal];
         
     }
+    
     
 }
 
